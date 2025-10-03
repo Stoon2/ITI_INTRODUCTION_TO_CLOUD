@@ -1,0 +1,27 @@
+# .pre-commit-config.yaml
+repos:
+  # General pre-commit housekeeping
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+      - id: detect-private-key
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        args: ["--disable", "MD013"]  # disable line-length rule if too strict
+
+
+  # Spell checking (optional but useful for teaching material)
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args: ["--ignore-words-list=iam,ec2,s3,vpc,rds,alb"]
