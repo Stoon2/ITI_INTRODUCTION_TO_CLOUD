@@ -61,17 +61,23 @@ Run the following commands on your EC2 instance:
 # Update system packages
 sudo yum update -y
 
-# Enable Python 3.8
-sudo amazon-linux-extras enable python3.8
-
 # Install Python 3.8 and pip
-sudo yum install -y python3.8 python3-pip git
+sudo yum install -y python3 python3-pip git
 
 # Upgrade pip
-pip3 install --upgrade pip
+sudo pip3 install --upgrade pip
 
 # Install Flask and PyMySQL
-pip3 install flask pymysql
+sudo pip3 install Flask PyMySQL
+
+# Connect to RDS from EC2 and install mysql client
+sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+sudo dnf install mysql-community-client -y
+
+mysql -h <endpoint> -u <your-user> -p
+create database "hello_world";
 ```
 
 ---
